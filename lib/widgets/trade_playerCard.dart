@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Player.dart';
 
-class PlayerCard extends StatelessWidget {
+class PlayerCard extends StatelessWidget { //Trade player cards needed to be smaller to fit within one card
   final Player player;
 
   const PlayerCard({
@@ -20,45 +20,40 @@ class PlayerCard extends StatelessWidget {
       ),
       elevation: 2,
       child: Padding(
-        padding: const EdgeInsets.all(2.0), // Further reduced padding inside card
+        padding: const EdgeInsets.all(2.0),
         child: Row(
           children: [
-            Column(
+            Column( //Column to show jersey img and name under jersey
               children: [
                 SizedBox(
-                  width: 35, // Slightly smaller width for jersey image
-                  height: 35, // Slightly smaller height for jersey image
+                  width: 35,
+                  height: 35,
                   child: Image.network(
                     player.jerseyImg,
-                    fit: BoxFit.contain,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Image.network(
-                        'https://placehold.co/35x35/cccccc/000000?text=No+Jersey',
-                        fit: BoxFit.contain,
-                      );
-                    },
+
                   ),
                 ),
-                const SizedBox(height: 1), // Minimal vertical spacing
-                SizedBox( // Wrap name in SizedBox to control its width
-                  width: 55, // Fixed width for the name text
+                const SizedBox(height: 1),
+                SizedBox(
+                  width: 55,
                   child: Text(
                     player.name,
                     style: const TextStyle(
-                      fontSize: 7, // Even smaller font size
+                      fontSize: 7,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                     maxLines: 1,
-                    overflow: TextOverflow.ellipsis, // Ensure ellipsis if needed
+
                   ),
                 ),
               ],
             ),
-            const SizedBox(width: 4), // Even smaller space between jersey and stats
+
+            const SizedBox(width: 4),
 
             Expanded(
-              child: Column(
+              child: Column( //Column to show points data area
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
@@ -67,13 +62,13 @@ class PlayerCard extends StatelessWidget {
                       Icon(
                         Icons.arrow_circle_up,
                         color: Colors.green[600],
-                        size: 14, // Slightly smaller icon size
+                        size: 14,
                       ),
                       const SizedBox(width: 1),
                       Text(
                         '${player.points}',
                         style: const TextStyle(
-                          fontSize: 14, // Slightly smaller font size
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.black87,
                         ),
@@ -81,23 +76,23 @@ class PlayerCard extends StatelessWidget {
                       const Text(
                         ' PTS',
                         style: TextStyle(
-                            fontSize: 9, // Slightly smaller font size
+                            fontSize: 9,
                             color: Colors.grey,
                             fontWeight: FontWeight.w600
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 2), // Reduced space between stats
+                  const SizedBox(height: 2),
 
                   Container(
-                    width: 35, // Reduced size
+                    width: 35,
                     height: 35,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
                         color: Colors.blueAccent,
-                        width: 1, // Reduced border width
+                        width: 1
                       ),
                     ),
                     child: Column(

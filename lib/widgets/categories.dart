@@ -73,7 +73,7 @@ class _StatefulCategoriesState extends State<StatefulCategories> {
                     widget.onCategorySelected(_categories[index]['name']);
                   },
                   style: IconButton.styleFrom(
-                    backgroundColor: isSelected ? Colors.blue : Colors.grey[300], //Make it blue whens selected, else it will be grey
+                    backgroundColor: isSelected ? Colors.black : Colors.grey[200], //Make it black whens selected, else it will be grey
                     foregroundColor: isSelected ? Colors.white : Colors.black, // White text when selected, else it will be black
                   ),
                 ),

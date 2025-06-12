@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-// Adjust paths as per your project structure
-import '../Player.dart'; // Assuming mockPlayers list and Player class are here
-import 'create_playercard.dart';
+
+import '../Player.dart';
+import 'create_playerCard.dart';
 import '../pages/create_page.dart';
-import 'create_playercard.dart'; // Assuming CreatePlayerCard is here
+
 
 class PlayerGridDisplay extends StatelessWidget {
-  final List<Player> players; // Now accepts a list of players
+  final List<Player> players;
 
   const PlayerGridDisplay({super.key, required this.players});
 
@@ -17,7 +17,7 @@ class PlayerGridDisplay extends StatelessWidget {
       child: GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: players.length, // Use the provided players list's length
+        itemCount: players.length, // For now just go up to the list length for showng data
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
           crossAxisSpacing: 8.0,
@@ -25,11 +25,11 @@ class PlayerGridDisplay extends StatelessWidget {
           childAspectRatio: 0.75,
         ),
         itemBuilder: (context, index) {
-          final player = players[index]; // Get player from the provided list
+          final player = players[index]; // G
           return CreatePlayerCard(
             player: player,
             onTap: () {
-              print('Tapped on ${player.name}. Attempting to show dialog...');
+              print('Tapped on ${player.name}');
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -37,8 +37,6 @@ class PlayerGridDisplay extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    // PlayerDetailModal needs to be defined or imported here
-                    // For now, it's assumed to be accessible, potentially from create_page.dart or its own file
                     child: PlayerDetailModal(player: player),
                   );
                 },

@@ -15,54 +15,46 @@ class CreatePlayerCard extends StatelessWidget { // Modified playercard for spec
   Widget build(BuildContext context) {
     return Card(
       color: Colors.grey[100],
-      margin: const EdgeInsets.all(3), // Space between Cards
+      margin: const EdgeInsets.all(3), // Space between each card
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
       elevation: 2,
-      child: InkWell( // Make the entire card tappable
-        onTap: onTap, // Assign the onTap callback
-        borderRadius: BorderRadius.circular(12), // Match Card's border radius for ripple effect
+      child: InkWell( // Entire card becomes tappable
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
 
-        child: Padding( // Keep padding to give content breathing room inside InkWell's tap area
+        child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            // Removed mainAxisSize.min to allow the Column to expand and fill the InkWell's area
-            // CrossAxisAlignment.stretch ensures children stretch horizontally if possible
+
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(
-                width: 60, // Adjusted size for grid display
-                height: 90, // Adjusted size for grid display
+              SizedBox( //Place to hold jersey img
+                width: 60,
+                height: 90,
                 child: Image.network(
                   player.jerseyImg,
-                  fit: BoxFit.contain,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Image.network(
-                      'https://placehold.co/60x60/cccccc/000000?text=Jersey',
-                      fit: BoxFit.contain,
-                    );
-                  },
                 ),
               ),
-              const SizedBox(height: 6), // Adjusted spacing
+              const SizedBox(height: 6), //Better spacing
 
-              Text(
+              Text( //Display player name
                 player.name,
                 style: const TextStyle(
-                  fontSize: 12, // Adjusted font size
+                  fontSize: 12,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: 2), // Adjusted spacing
+              const SizedBox(height: 2),
 
               Text( //VERSUS Text
                 'vs ${player.opponent ?? 'Opponent'} ${player.eventDate ?? 'Date'}',
                 style: const TextStyle(
-                  fontSize: 10, // Adjusted font size
+                  fontSize: 10,
                   color: Colors.grey,
                 ),
                 textAlign: TextAlign.center,

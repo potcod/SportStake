@@ -2,7 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../Player.dart';
-import '../widgets/playercard.dart';
+import '../widgets/playerCard.dart';
 
 
 class LineUpPage extends StatelessWidget {
@@ -109,19 +109,18 @@ Widget myLineups(){
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: userBets.map((bet) {
-      return Card( // Keep the card for the entire bet group
+
+      return Card( // Keep the card per entire bet group
         color: Colors.white,
         margin: const EdgeInsets.symmetric(vertical: 8),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Padding(
           padding: const EdgeInsets.all(12),
-          child: Row( // Changed the outer column to row to align cards and button side by side
+          child: Row(
             crossAxisAlignment: CrossAxisAlignment.center, // Vertically align items in this row
             children: [
-              Expanded( // Wrap the Wrap with Expanded to take available space
+              Expanded( //Expanded so that it takes all the available space
                 child: Wrap(
-                  spacing: 8.0, // Horizontal space between cards
-                  runSpacing: 8.0, // Vertical space between lines of cards
                   children: bet.betList.map((player) {
                     return PlayerCard(player: player); // Use the PlayerCard for each player
                   }).toList(),
@@ -138,10 +137,13 @@ Widget myLineups(){
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20), // Padding for button size
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
 
                 ),
                 child: const Text(
-                  "List\n\$100\n\$175", // Temp numbers
+                  "List\n\$100 ->\$175", // Temp numbers
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 14),
                 ),

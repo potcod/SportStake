@@ -19,7 +19,7 @@ class PlayerCard extends StatelessWidget { //Playercard for lineup screen
       ),
       elevation: 4,
       child: Padding(
-        padding: const EdgeInsets.all(8.0), // Reduced padding inside card
+        padding: const EdgeInsets.all(8.0),
         child: Row( //Align everything by row first
           children: [
             Column( // Column for jerseyImg and Name

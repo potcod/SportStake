@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/categories.dart';
-import '../widgets/trade_playercard.dart';
+import '../widgets/trade_playerCard.dart';
 import '../Player.dart'; //
 import '../widgets/searchBar.dart';
 
@@ -16,24 +16,24 @@ class _TradePageState extends State<TradePage> {
   Set<String> _selectedTopButton = {'openMarket'};
 
 
-  void _handleCategorySelected(String categoryName) { //
+  void _handleCategorySelected(String categoryName) {
     setState(() {
       _selectedCategory = categoryName;
-      print('Selected category for TradePage: $_selectedCategory');
+      print('Selected category: $_selectedCategory');
 
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+    return SingleChildScrollView( // Scrollable to see all the doubles user may have
+        padding: const EdgeInsets.only(left:8, right: 8),
         child: Column(
           children: [
             const SizedBox(height: 4),
-            topButtons(),
+            topButtonsWidget(),
             const SizedBox(height: 12),
-            searchBar(),
+            searchBarWidget(),
             StatefulCategories(onCategorySelected:  _handleCategorySelected),
 
             Align(
@@ -50,7 +50,7 @@ class _TradePageState extends State<TradePage> {
               ),
             ),
 
-            doubles(),
+            doublesWidget(),
 
 
           ],
@@ -58,8 +58,8 @@ class _TradePageState extends State<TradePage> {
     );
   }
 
-  Widget topButtons(){
-    return Center( // Center the segmented button horizontally
+  Widget topButtonsWidget(){
+    return Center(
       child: SegmentedButton<String>(
         segments: const <ButtonSegment<String>>[
           ButtonSegment<String>(
@@ -81,7 +81,7 @@ class _TradePageState extends State<TradePage> {
             print('Selected segmented button: $_selectedTopButton');
           });
         },
-        style: SegmentedButton.styleFrom( //Change look of selected button
+        style: SegmentedButton.styleFrom( // Determine look of selected button
           selectedBackgroundColor: Colors.black,
           selectedForegroundColor: Colors.white,
           textStyle: const TextStyle(fontSize: 14),
@@ -90,7 +90,7 @@ class _TradePageState extends State<TradePage> {
     );
   }
 
-  Widget doubles(){
+  Widget doublesWidget(){
 
     List<Widget> rowsOfDoubles = [];
     for (int i = 0; i < mockPlayers.length; i += 2) {
@@ -123,8 +123,7 @@ class _TradePageState extends State<TradePage> {
                       backgroundColor: Colors.grey[800],
                       foregroundColor: Colors.white,
                       minimumSize: const Size(80, 60),
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      shape: RoundedRectangleBorder(
+                      shape: RoundedRectangleBorder( //Makes the button square
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
@@ -142,7 +141,6 @@ class _TradePageState extends State<TradePage> {
       }
     }
     return Column(
-
       children:
       rowsOfDoubles,
     );

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-Widget searchBar(){
+Widget searchBarWidget(){
   return Padding( // Search bar
 
     padding: const EdgeInsets.all(6.0),
     child: TextField(
 
       decoration: InputDecoration(
-        hintText: 'Search players, teams, etc.',
+        hintText: 'Search...',
         prefixIcon: const Icon(Icons.search),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),

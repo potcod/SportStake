@@ -2,60 +2,57 @@ import 'package:flutter/material.dart';
 import '../Player.dart';
 import '../widgets/searchBar.dart';
 import '../widgets/categories.dart';
-import '../widgets/create_playercard.dart';
-import '../widgets/player_grid_display.dart'; // New PlayerGridDisplay widget
+import '../widgets/player_grid_display.dart';
 
-class CreatePage extends StatefulWidget {
+class CreatePage extends StatefulWidget { //Stateful page because of categories
   const CreatePage({super.key});
   @override
   State<CreatePage> createState() => _CreatePageState();
 }
 
-class _CreatePageState  extends State<CreatePage>{
-  String? _selectedCategory; // State variable to hold the currently selected category name
+class _CreatePageState extends State<CreatePage>{
+  String? _selectedCategory; // Store category name
 
-  // Callback function to receive the selected category from StatefulCategories
+
   void _handleCategorySelected(String categoryName) {
     setState(() {
       _selectedCategory = categoryName;
-      print('Selected category: $_selectedCategory'); // Debugging output
+      print('Selected category: $_selectedCategory');
     });
   }
 
-  // Method to filter mockPlayers based on the selected category
+  // Method to filter mock players based on the selected category
   List<Player> _getFilteredPlayers() {
     if (_selectedCategory == null || _selectedCategory == 'All') {
-      return mockPlayers; // Show all players if no category or 'All' is selected
+      return mockPlayers; //
     } else {
-      // Filter players whose category matches the selected one (case-insensitive)
       return mockPlayers
           .where((player) =>
-      player.category.toLowerCase() == _selectedCategory!.toLowerCase())
+      player.category.toLowerCase() == _selectedCategory!.toLowerCase()) //ensure theres no case differential
           .toList();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    // Get the filtered list of players before passing to playerGrid()
-    final List<Player> filteredPlayers = _getFilteredPlayers();
+    final List<Player> filteredPlayers = _getFilteredPlayers(); // Display by filtered list
 
     return SingleChildScrollView(
       child: Column(
         children: [
-          searchBar(),
-          // Pass the callback to StatefulCategories so it can communicate selection
+          searchBarWidget(),
+
           StatefulCategories(onCategorySelected: _handleCategorySelected),
-          events(),
-          // Pass the filtered list of players to PlayerGridDisplay
+          eventsWidget(),
+
           PlayerGridDisplay(players: filteredPlayers),
         ],
       ),
     );
   }
 
-  Widget events() {
-    List<String> mockEvents = [
+  Widget eventsWidget() {
+    List<String> mockEvents = [ //Hardcoded events
       "LAL vs GSW",
       "DEN vs DAL",
       "PHO vs MIL",
@@ -85,7 +82,7 @@ class _CreatePageState  extends State<CreatePage>{
                   padding: const EdgeInsets.symmetric(horizontal: 0.5),
                   child: ElevatedButton(
                     onPressed: () {
-                      print('Event selected: $event');
+                      print('Event selected: $event'); // No functionality yet, not sure how i'd sort
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey[200],
@@ -94,7 +91,6 @@ class _CreatePageState  extends State<CreatePage>{
                         borderRadius: BorderRadius.circular(10),
                       ),
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                      elevation: 0,
                     ),
                     child: Text(
                       event,
@@ -110,7 +106,7 @@ class _CreatePageState  extends State<CreatePage>{
     );
   }
 }
-class PlayerDetailModal extends StatelessWidget {
+class PlayerDetailModal extends StatelessWidget { //Widget for popup modal
   final Player player;
 
   const PlayerDetailModal({
@@ -129,32 +125,47 @@ class PlayerDetailModal extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Align(
+
+          Align( //Close button
             alignment: Alignment.topRight,
-            child: IconButton(
-              icon: const Icon(Icons.close),
-              onPressed: () {
-                Navigator.of(context).pop();
+            child: PopupMenuButton<String>(
+              child: Text("Points(↓)"),
+
+              onSelected: (String result) {
+                if (result == 'close') {
+                  Navigator.of(context).pop(); // Close the modal
+                }
               },
+              itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                const PopupMenuItem<String>(
+                  value: 'Points',
+                  child: Text('Points'),
+                ),
+                const PopupMenuItem<String>(
+
+                  value: 'Rebounds',
+                  child: Text('Rebounds'),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'share',
+                  child: Text('Assists'),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 10),
-          SizedBox(
+
+          SizedBox( //Jersey Img display
             width: 120,
             height: 120,
             child: Image.network(
               player.jerseyImg,
               fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) {
-                return Image.network(
-                  'https://placehold.co/120x120/cccccc/000000?text=Jersey',
-                  fit: BoxFit.contain,
-                );
-              },
             ),
           ),
           const SizedBox(height: 16),
-          Text(
+
+          Text( //Player name
             player.name,
             style: const TextStyle(
               fontSize: 22,
@@ -163,8 +174,9 @@ class PlayerDetailModal extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
-          Text(
-            'vs ${player.opponent ?? 'Opponent'} ${player.eventDate ?? 'Date'}',
+
+          Text( //Versus Text
+            'vs ${player.opponent ?? 'Opponent'} ${player.eventDate ?? 'Date'}', //Unknown who opponent would be, nor date
             style: const TextStyle(
               fontSize: 16,
               color: Colors.grey,
@@ -172,7 +184,8 @@ class PlayerDetailModal extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
-          Column(
+
+          Column( //Points and Submit
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -186,16 +199,24 @@ class PlayerDetailModal extends StatelessWidget {
               ),
             ],
           ),
-          ElevatedButton(onPressed: (){}, //Slider button didn't work, just using elevated button
+
+          ElevatedButton(  //Slider button didn't work, just using elevated button
+            onPressed: (){ //Display confirmation message as snackbar
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Line submitted!'),
+                ),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue[300],
+            ),
             child: Text("SUBMIT LINE",
               style: const TextStyle(
               fontSize: 16,
               color: Colors.white,
             ),),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue[300],
-
-            ),)
+          )
 
         ],
       ),

@@ -95,7 +95,7 @@ class _PlayerEntryScreenState extends State<PlayerEntryScreen> {
                     color: Colors.blue,
                     iconSize: 18,
                     padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(),
+
                   ),
                 ],
               ),
