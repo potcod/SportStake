@@ -17,9 +17,9 @@ Responsive UI: Designed to adapt to various screen sizes.
 
 Prerequisites:
 
-Have Flutter SDK installed
-Install and setup Android Studio
-Have git to clone the repo
+Have Flutter SDK installed, 
+Install and setup Android Studio,
+Have git to clone the repo,
 
 Starting the Project:
 
