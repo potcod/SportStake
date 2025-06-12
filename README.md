@@ -27,6 +27,8 @@ run- git clone https://github.com/potcod/SportStake.git
      flutter run
 
 If there's issues with flutter, try running - flutter doctor
+
                                               flutter pub get
+                                              
                                               flutter clean
                                             
