@@ -1,16 +1,32 @@
-# sportexam
+# Sporstake Intern Exam
+A mobile application built with Flutter, for Sportstake, designed to showcase player statistics, allow users to create and manage their lineups, and participate in a simulated trading market for player bets.
 
-A new Flutter project.
+Features: 
+Player Browsing: View a grid of player cards with essential stats.
 
-## Getting Started
+Category Filtering: Filter players by sport categories (Basketball, Soccer, Football, Baseball, Golf).
 
-This project is a starting point for a Flutter application.
+Event Display: See upcoming sports events.
 
-A few resources to get you started if this is your first Flutter project:
+Player Detail Modal: Tap on a player card to view detailed information, adjust wager points, and select between different stats (Points, Rebounds, Assists).
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Lineup Management: Display and manage custom player lineups, aka bets.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Responsive UI: Designed to adapt to various screen sizes.
+
+
+Prerequisites:
+
+Have Flutter SDK installed
+Install and setup Android Studio
+Have git to clone the repo
+
+Starting the Project:
+
+run- git clone https://github.com/potcod/SportStake.git
+     flutter run
+
+If there's issues with flutter, try running - flutter doctor
+                                              flutter pub get
+                                              flutter clean
+                                            
