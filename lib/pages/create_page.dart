@@ -186,6 +186,16 @@ class PlayerDetailModal extends StatelessWidget {
               ),
             ],
           ),
+          ElevatedButton(onPressed: (){}, //Slider button didn't work, just using elevated button
+            child: Text("SUBMIT LINE",
+              style: const TextStyle(
+              fontSize: 16,
+              color: Colors.white,
+            ),),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue[300],
+
+            ),)
 
         ],
       ),
