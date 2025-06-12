@@ -19,6 +19,19 @@ class LineUpPage extends StatelessWidget {
             child: chart(),
           ),
           balance(),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: const Padding(
+              padding: EdgeInsets.only(left: 6.0), // Adjust left padding as needed
+              child: Text(
+                "My Lineups",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24, // Adjust font size as needed
+                ),
+              ),
+            ),
+          ),
           myLineups(),
 
         ],
