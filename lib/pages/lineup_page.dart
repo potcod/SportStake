@@ -52,11 +52,7 @@ Widget chart(){
     LineChartData(
       lineBarsData: [
         LineChartBarData(
-          spots: [
-            FlSpot(0, 3),
-            FlSpot(1, 2),
-            FlSpot(2, 4),
-          ],
+          spots: balanceData,
           isCurved: true,
           color: Colors.blue,
           belowBarData: BarAreaData(
@@ -97,7 +93,7 @@ Widget dataRow(String title, String value) {
   );
 }
 
-class Bet {
+class Bet { //datamodel for lineups
   final List<Player> betList;
 
   //later on should receive jersey number and a list of team colors to color a preset jersey image

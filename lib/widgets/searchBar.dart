@@ -22,6 +22,7 @@ Widget searchBarWidget(){
 
         print('Search query: $value');
       },
+
     ),
   );
 }
